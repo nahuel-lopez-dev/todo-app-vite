@@ -11,6 +11,9 @@ const state = {
         new Todo('Piedra del alma'),
         new Todo('Piedra del infinito'),
         new Todo('Piedra del tiempo'),
+        new Todo('Piedra del poder'),
+        new Todo('Piedra del espacio'),
+        new Todo('Piedra de la realidad'),
     ],
     filter: Filters.All,
 }
@@ -24,8 +27,22 @@ const loadStore = () => {
     throw new Error('Not implemented');
 }
 
+/**
+ * El filtro va a ser con Filters
+ * @param {Filters} filter 
+ */
 const getTodos = ( filter = Filters.All) => {
-    throw new Error('Not implemented');
+    
+    switch(filter){
+        case Filters.All:
+            return [...state.todos];
+        case Filters.Completed:
+            return state.todos.filter( todo => todo.done);
+        case Filters.Pending:
+            return state.todos.filter( todo => !todo.done);
+        default:
+            throw new Error(`Option ${filter} is not valid.`);        
+    }
 }
 
 /**
@@ -33,7 +50,10 @@ const getTodos = ( filter = Filters.All) => {
  * @param {String} description 
  */
 const addTodo = (description) => {
-    throw new Error('Not implemented');
+
+    if(!description) throw new Error('Description is required');
+    
+    state.todos.push(new Todo(description));
 }
 
 /**
@@ -41,23 +61,32 @@ const addTodo = (description) => {
  * @param {String} todoId todo identifier
  */
 const toggleTodo = (todoId) => {
-    throw new Error('Not implemented');
+    state.todos = state.todos.map( todo => {
+        if(todo.id === todo.id){
+            todo.done = !todo.done;
+        }
+        return todo;
+    })
 }
 
 const deleteTodo = (todoId) => {
-    throw new Error('Not implemented');
+    state.todos = state.todos.filter( todo => todo.id !== todoId );
 }
 
 const deleteCompleted = () => {
-    throw new Error('Not implemented');
+    state.todos = state.todos.filter( todo => todo.done );
 }
 
+/**
+ * El filtro va a ser con Filters
+ * @param {Filters} newFilter 
+ */
 const setFilter = ( newFilter = Filters.All ) => {
-    throw new Error('Not implemented');
+    state.filter = newFilter;
 }
 
 const getCurrentFilter = () => {
-    throw new Error('Not implemented');
+    return state.filter;
 }
 
 export default {
