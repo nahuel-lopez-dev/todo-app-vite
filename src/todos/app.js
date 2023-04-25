@@ -1,8 +1,8 @@
 import html from './app.html?raw';
-import todoStore from '../store/todo.store';
-import { renderTodos } from './use-cases/render-todos';
+import todoStore, {Filters} from '../store/todo.store';
+import { renderTodos } from './use-cases';
 
-const elementIDs = {
+const ElementIDs = {
     TodoList: '.todo-list',
 }
 
@@ -15,7 +15,7 @@ export const App = ( elementId ) => {
 
     const displayTodos = () => {
         const todos = todoStore.getTodos( todoStore.getCurrentFilter());
-        renderTodos(elementIDs.TodoList)
+        renderTodos(ElementIDs.TodoList, todos)
     }
     
     // Cuando la función App() se llama, función anónima autoinvocada IIFE
