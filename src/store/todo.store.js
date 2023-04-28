@@ -62,7 +62,7 @@ const addTodo = (description) => {
  */
 const toggleTodo = (todoId) => {
     state.todos = state.todos.map( todo => {
-        if(todo.id === todo.id){
+        if(todo.id === todoId){
             todo.done = !todo.done;
         }
         return todo;
