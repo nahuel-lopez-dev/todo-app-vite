@@ -1,5 +1,6 @@
 import { Todo } from '../models/todo.model';
 
+
 /**
  * 
  * @param {Todo} todo 
@@ -25,5 +26,6 @@ export const createTodoHTML = ( todo ) => {
     if ( todo.done )
         liElement.classList.add('completed');
     
+
     return liElement;
 }
